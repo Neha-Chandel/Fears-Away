@@ -30,3 +30,23 @@ num_tweets=50
 print ("num_tweets ", num_tweets)
 
 new_search = "#crime -filter:retweets"
+
+# Using .Cursor() to search through twitter for the tweets with passed keyword
+# Limiting the number of tweets by using .items(number of tweets)
+tweets = tweepy.Cursor(api.search_tweets,
+              q=new_search,
+              lang="en",
+              tweet_mode='extended').items(num_tweets)
+
+cnt=0
+
+#Creating dataframe
+
+tcolumns = ['twitter_id','twitter_handle','twitter_text', 'created_at' ,'hashtag','retweets']
+tdata = []
+ucolumns = [ 'twitter_handle', 'user_name', 'user_location', 'user_type', 'total_tweets', 'follower_count', 'following_count', 'created_at']
+udata=[]
+
+
+
+	
