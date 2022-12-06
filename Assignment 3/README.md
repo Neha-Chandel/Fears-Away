@@ -1,12 +1,12 @@
 ## CRIME DATASET FEARS AWAY
 
-Overview: Gathering, Scraping, Munging, and Cleaning Data
+### Overview: Gathering, Scraping, Munging, and Cleaning Data
 
 Assemble data on crime from variety of sources: 
 
-Crime Dataset obtained from Kagle : https://www.kaggle.com/datasets/AnalyzeBoston/crimes-in-boston
-Officers Information obtained from Analyze Boston : https://data.boston.gov/dataset/boston-police-department-fio
-Neighbourhoods in Boston obtained from ArcGIS Hub : https://hub.arcgis.com/datasets/boston::city-of-boston-managed-streets/explore?location=42.312533%2C-71.087353%2C12.51
+#### Crime Dataset obtained from Kagle : https://www.kaggle.com/datasets/AnalyzeBoston/crimes-in-boston
+#### Officers Information obtained from Analyze Boston : https://data.boston.gov/dataset/boston-police-department-fio
+#### Neighbourhoods in Boston obtained from ArcGIS Hub : https://hub.arcgis.com/datasets/boston::city-of-boston-managed-streets/explore?location=42.312533%2C-71.087353%2C12.51
 
 After gathering the data, we must reformat it to meet the database schema.
 
@@ -198,15 +198,15 @@ print ("Loaded in location Database")
 conn.commit()
 conn.close()
 
-### The screen prints of all the script working fine can be found in Run_Scripts.pdf
+#### The screen prints of all the script working fine can be found in Run_Scripts.pdf
 
 
 
 ## Step 5 : Use Cases and SQL Queries 
 
-The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
+#### The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
 
-Use Case 1: View the total number of incidents in Boston
+#### Use Case 1: View the total number of incidents in Boston
 Description: User views the total number of incidents in last 5 years.
 Actor: User 
 Steps:
@@ -221,7 +221,7 @@ FROM incidents i LEFT JOIN location l
 ON i.location = l.street
 where i.incident_year between 2018 and 2022;
 
-Use Case2: User views top 5 neighborhoods in Boston for highest crime incidents.
+#### Use Case2: User views top 5 neighborhoods in Boston for highest crime incidents.
 Description: User views the top 5 neighborhoods with highest number of incidents.
 Actor: User
 Precondition:
@@ -242,7 +242,7 @@ group by neighborhood
 order by count(i.incident_number) desc
 limit 5;
 
-Use Case3: User views the harassment incidents in Boston.
+#### Use Case3: User views the harassment incidents in Boston.
 Description: User views the harassment incidents in Boston along with streets.
 Actor: User
 Precondition:
@@ -262,7 +262,7 @@ where t.offence_type = 'Harassment'
 group by l.street
 order by count(i.incident_number) desc;
 
-Use Case4: User views the incidents under district D14 in Boston.
+#### Use Case4: User views the incidents under district D14 in Boston.
 Description: User views the incidents under district D14 in Boston along with cop details.
 Actor: User
 Precondition:
@@ -280,7 +280,7 @@ LEFT JOIN cops_info c
 ON l.neighborhood = c.neighborhood
 where c.cop_district = 'D14';
 
-Use Case5: User views the incidents for a particular location.
+#### Use Case5: User views the incidents for a particular location.
 Description: User views the incidents details with respect to street.
 Actor: User
 Precondition:
@@ -296,7 +296,7 @@ FROM incident_type t RIGHT JOIN location l
 ON t.locality = l.street
 where l.neighborhood = 'Dorchester';
 
-Use Case6: User views the details of the year with highest number of incidents.
+#### Use Case6: User views the details of the year with highest number of incidents.
 Description: User views the incidents details with respect to year.
 Actor: User
 Precondition:
@@ -315,7 +315,7 @@ group by i.incident_year
 order by count(incident_number) desc
 limit 1;
 
-Use Case7: User views the details of the time when most incidents happened.
+#### Use Case7: User views the details of the time when most incidents happened.
 Description: User views the incidents details with respect to hour.
 Actor: User
 Precondition:
@@ -334,7 +334,7 @@ group by i.incident_year
 order by count(incident_number) desc
 limit 1;
 
-Use Case8: User views the number of incidents happened after midnight.
+#### Use Case8: User views the number of incidents happened after midnight.
 Description: User views the incidents details happened after midnight.
 Actor: User
 Precondition:
@@ -352,7 +352,7 @@ where i.incident_hour between 1 and 6
 group by i.incident_year
 order by count(incident_number) ;
 
-Use Case9: User views cop details along with location in Boston.
+#### Use Case9: User views cop details along with location in Boston.
 Description: User views the cop details.
 Actor: User
 Precondition:
