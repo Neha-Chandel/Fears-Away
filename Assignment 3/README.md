@@ -1,5 +1,5 @@
 
-CRIME DATASET FEARS AWAY
+# CRIME DATASET FEARS AWAY
 
 Overview: Gathering, Scraping, Munging, and Cleaning Data
 
@@ -17,7 +17,7 @@ After Auditing the data you need to use SQL to insert the data into your databas
 
 Program Flow Details 
 
-Step 1 : The sources from data was collected are mentioned above.
+# Step 1 : The sources from data was collected are mentioned above.
 
 Depending on the data collected 4 csv files are created.
 
@@ -28,7 +28,7 @@ Depending on the data collected 4 csv files are created.
 
 All the files are uploaded in the folder.
 
-Step 2 : Cleaning Data
+# Step 2 : Cleaning Data
 
 Data has been cleaned by using clean_data.py python script.
 
@@ -105,20 +105,20 @@ def missing_cols(address):
         print("All missing values identified")
 missing_cols(address)
 
-# Drop unnecessary columns that are not important from crime dataset
+#Drop unnecessary columns that are not important from crime dataset
 crime.dropna(axis=0, how="any", subset='OFFENSE_CODE_GROUP',inplace=True)
 crime1 = crime.copy()
 drop_cols = ['OFFENSE_CODE' ,'DAY_OF_WEEK','REPORTING_AREA','INCIDENT_DATE','SHOOTING','UCR_PART','Lat', 'Long', 'Location']
 crime.drop(drop_cols, axis=1, inplace=True)
 crime.drop_duplicates(subset='INCIDENT_NUMBER', inplace=True)
 
-# Drop unnecessary columns that are not important from crime dataset making ready for incidents type
+#Drop unnecessary columns that are not important from crime dataset making ready for incidents type
 dropping_cols = ['INCIDENT_NUMBER','OFFENSE_DESCRIPTION','DISTRICT' ,'REPORTING_AREA','INCIDENT_DATE','SHOOTING','YEAR','MONTH','DAY_OF_WEEK','HOUR','UCR_PART','Lat', 'Long','Location']
 crime1.drop(dropping_cols, axis=1, inplace=True)
 address.drop_duplicates(subset='street', inplace=True)
 address.dropna(axis=0, how="any", subset='Nbhd',inplace=True)
 
-# Drop unnecessary columns that are not important from cops dataset
+#Drop unnecessary columns that are not important from cops dataset
 
 dropc_cols = ['url',  'org_url' ,'doa','total','regular','retro','other','overtime', 'state','injured', 'detail','quinn','details_count', 'articles_officers_count', 'articles_officers_to_review_count', 'ia_score', 'field_contacts_count', 'incidents_count', 'swats_count', 'citations_count']
 cops.drop(dropc_cols, axis=1, inplace=True)
@@ -134,13 +134,13 @@ crime.to_csv(r'C:\Users\chand\OneDrive\Desktop\incidents.csv', index=False)
 crime1.to_csv(r'C:\Users\chand\OneDrive\Desktop\incident_type.csv', index=False)
 address.to_csv(r'C:\Users\chand\OneDrive\Desktop\locations.csv', index=False)
 
-Step 3 : Audit Validity,Audit Consistency, Audit Completeness
+# Step 3 : Audit Validity,Audit Consistency, Audit Completeness
 
 All the parameters have taken care while cleaning the data and after the files are generated it consits all the valid, consistent and complete data.
 
 Did not use BFILL and FFILL because it hampers the quality of data the null values for which no information was found are removed and others are replaced with the matching data
 
-Step 4 : Inserting data into the table
+# Step 4 : Inserting data into the table
 
 Used python script to INSERT data into the respective tables.
 The create queries can be found in Create_Queries.pdf
@@ -199,11 +199,11 @@ print ("Loaded in location Database")
 conn.commit()
 conn.close()
 
-The screen prints of all the script working fine can be found in Run_Scripts.pdf
+# The screen prints of all the script working fine can be found in Run_Scripts.pdf
 
 
 
-Step 5 : Use Cases and SQL Queries 
+# Step 5 : Use Cases and SQL Queries 
 
 The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
 
@@ -369,7 +369,7 @@ FROM cops_info c RIGHT JOIN location l
 ON c.zip_code = l.postal
 where c.neighborhood = 'Dorchester'
 
-Step 6 : All the results for the queries from Assignment 2 is uploaded and can be found in Assignment2_queries.pdf
+# Step 6 : All the results for the queries from Assignment 2 is uploaded and can be found in Assignment2_queries.pdf
 
-Step 7 : No review comments to work upon was recieved from Assignment 2.
+# Step 7 : No review comments to work upon was recieved from Assignment 2.
 
