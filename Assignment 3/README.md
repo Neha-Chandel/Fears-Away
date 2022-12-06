@@ -230,6 +230,7 @@ System Response: Incidents for a Boston location are displayed.
 Post Condition: System displays all the incidents reported for Boston location.
 
 Count the total number of incidents occured in boston in last 5 years?
+
 SELECT count(incident_number)
 FROM incidents
 where incident_year between 2018 and 2022;
@@ -244,6 +245,7 @@ System Response: Incidents for top 5 locations are displayed.
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 List the top 5 neighborhoods in Boston with highest crime incidents?
+
 SELECT l.neighborhood, count(i.incident_number) as total_incidents
 FROM location l RIGHT JOIN incidents i
 ON l.zip_code = i.zip
@@ -262,6 +264,7 @@ System Response: Harassment incidents are displayed.
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 Count the harassment incidents on Boston streets 
+
 SELECT l.neighborhood, t.incident_type, count(i.incident_number) as total_incidents
 FROM incidents i LEFT JOIN incident_type t
 ON t.incident_id = i.incident_number
@@ -281,6 +284,7 @@ System Response: All the officers details along with name and title are displaye
 Post Condition: System displays all the details requested by the user.
 
 Who are the cops in charge for Roxbury?
+
 SELECT  c.cop_name, c.cop_title, l.neighborhood
 FROM cops_info c  
 left JOIN location l
@@ -298,11 +302,15 @@ System Response: Incidents happened in Adams St are displayed.
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 What is the most recurring incident on Adams Street in a one year period.
+
+SELECT count(incident_number), t.incident_type
+FROM incidents i LEFT JOIN incident_type t
 ON i.location = t.locality
 where t.locality = 'ADAMS ST' and incident_year between 2020 and 2021
 group by t.incident_type
 order by count(i.incident_number) desc
 limit 1;
+
 
  
 #### Use Case6: User views the details of the street along with neighborhood and zipcode which marked the highest number of incidents in last 5 year.
