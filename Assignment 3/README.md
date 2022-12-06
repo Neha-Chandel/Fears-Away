@@ -324,6 +324,7 @@ System Response: Which street had highest number of incidents in last 5 years id
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 The above use case determines the highly unsafe street in Boston.
+
 SELECT count(i.incident_number) as incident_count, i.location, l.neighbourhood, l.zip_code
 FROM  incidents i RIGHT JOIN location l
 ON i.zip = l.zip_code
@@ -343,6 +344,7 @@ System Response: Which year marked the highest number of incidents are displayed
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 Which year marks the highest number of incidents?
+
 SELECT count(i.incident_number) as incident_count, i.incident_year
 FROM  incidents i RIGHT JOIN location l
 ON i.location = l.street
@@ -361,6 +363,7 @@ System Response: The range of hours marked the highest number of incidents are d
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 Between what hours of day most incidents happen?
+
 SELECT count(i.incident_number) as incident_count, i.incident_hour, l.neighbourhood, l.street 
 FROM  incidents i RIGHT JOIN location l
 ON i.location = l.street
@@ -369,7 +372,7 @@ group by i.incident_hour, l.neighbourhood, l.street
 order by count(incident_number) desc
 limit 1;
  
-#### Use Case8: User views the number of incidents happened after midnight.
+#### Use Case9: User views the number of incidents happened after midnight.
 Description: User views the incidents details happened after midnight.
 Actor: User
 Precondition:
@@ -379,19 +382,11 @@ System Response: All the incidents happened after midnight are displayed.
 Post Condition: System displays all the incidents reported for user searched criteria.
 
 How many incidents happen after midnight night?
+
 SELECT count(incident_number) from incidents
 where incident_hour between 1 and 6
 group by incident_hour
 order by count(incident_number) desc;
- 
-#### Use Case9: User views cop details along with location in Boston.
-Description: User views the cop details.
-Actor: User
-Precondition:
-Steps:
-Actor action: User views the cop details along with streets.
-System Response: All the cop details as per location are displayed.
-Post Condition: System displays all the incidents reported for user searched criteria.
 
 ### Step 6 : All the results for the queries from Assignment 2 is uploaded and can be found in Assignment2_queries.pdf
 
