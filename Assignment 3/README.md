@@ -16,7 +16,7 @@ After Auditing the data you need to use SQL to insert the data into your databas
 
 Program Flow Details 
 
-## Step 1 : The sources from data was collected are mentioned above.
+### Step 1 : The sources from data was collected are mentioned above.
 
 Depending on the data collected 4 csv files are created.
 
@@ -27,7 +27,7 @@ Depending on the data collected 4 csv files are created.
 
 All the files are uploaded in the folder.
 
-## Step 2 : Cleaning Data
+### Step 2 : Cleaning Data
 
 Data has been cleaned by using clean_data.py python script.
 
@@ -151,9 +151,73 @@ address.to_csv(r'C:\Users\chand\OneDrive\Desktop\locations.csv', index=False)
 
 #### The screen prints of all the script working fine can be found in Run_Scripts.pdf
 
+### Step 3 : Audit Validity,Audit Consistency, Audit Completeness
+
+All the parameters have taken care while cleaning the data and after the files are generated it consits all the valid, consistent and complete data.
+
+Did not use BFILL and FFILL because it hampers the quality of data the null values for which no information was found are removed and others are replaced with the matching data
+
+### Step 4 : Inserting data into the table
+
+Used python script to INSERT data into the respective tables. The create queries can be found in Create_Queries.pdf
+
+import mysql.connector
+import csv
+import pandas as pd
+
+#establishing connection
+conn=mysql.connector.connect(host='localhost', username='root', password='admin', database='fear_away', allow_local_infile=True)
+my_cursor=conn.cursor()
+
+#Reading incidents file
+csv_data1 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\incidents.csv',encoding="utf8")))
+
+#Reading incidents type file
+csv_data2 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\incident_type.csv', encoding="utf8")))
+
+#Reading cops information file
+csv_data3 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\cops_information.csv', encoding="utf8")))
+
+#Reading locations
+csv_data4 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\locations.csv', encoding="utf8")))
+
+#store headers and rows
+
+header = next(csv_data1)
+header = next(csv_data2)
+header = next(csv_data3)
+header = next(csv_data4)
+
+print ("importing the file 1")
+#Inserting into incidents
+for row in csv_data1:
+    print(row)
+    my_cursor.execute("INSERT INTO incidents (incident_number, incident_code_group, incident_desc, incident_district, incident_year ,incident_month, incident_hour, location, zip) VALUES(%s, %s, %s, %s, %s, %s, %s,%s, %s)", row)
+print ("Loaded in incidents Database")
+
+#Inserting into incident type
+for row in csv_data2:
+    print(row)
+    my_cursor.execute("INSERT INTO incident_type (incident_id, incident_code, incident_type, locality) VALUES(%s, %s, %s,%s)", row)
+print ("Loaded in incident_type Database")
+
+#Inserting into cops
+for row in csv_data3:
+    print(row)
+    my_cursor.execute("INSERT INTO cops_info (cop_id, cop_badge, cop_name, cop_title , cop_district, zip_code, neighborhood) VALUES(%s, %s, %s, %s, %s, %s, %s)", row)
+print ("Loaded in cops Database")
+
+#Inserting intolocation
+for row in csv_data4:
+    print(row)
+    my_cursor.execute("INSERT INTO location (neighbourhood, zip_code, street) VALUES(%s, %s,%s)", row)
+print ("Loaded in location Database")
+
+conn.commit()
+conn.close()
 
 
-## Step 5 : Use Cases and SQL Queries 
+### Step 5 : Use Cases and SQL Queries 
 
 #### The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
 
