@@ -1,5 +1,4 @@
-
-# CRIME DATASET FEARS AWAY
+## CRIME DATASET FEARS AWAY
 
 Overview: Gathering, Scraping, Munging, and Cleaning Data
 
@@ -17,7 +16,7 @@ After Auditing the data you need to use SQL to insert the data into your databas
 
 Program Flow Details 
 
-# Step 1 : The sources from data was collected are mentioned above.
+## Step 1 : The sources from data was collected are mentioned above.
 
 Depending on the data collected 4 csv files are created.
 
@@ -28,7 +27,7 @@ Depending on the data collected 4 csv files are created.
 
 All the files are uploaded in the folder.
 
-# Step 2 : Cleaning Data
+## Step 2 : Cleaning Data
 
 Data has been cleaned by using clean_data.py python script.
 
@@ -134,13 +133,13 @@ crime.to_csv(r'C:\Users\chand\OneDrive\Desktop\incidents.csv', index=False)
 crime1.to_csv(r'C:\Users\chand\OneDrive\Desktop\incident_type.csv', index=False)
 address.to_csv(r'C:\Users\chand\OneDrive\Desktop\locations.csv', index=False)
 
-# Step 3 : Audit Validity,Audit Consistency, Audit Completeness
+## Step 3 : Audit Validity,Audit Consistency, Audit Completeness
 
 All the parameters have taken care while cleaning the data and after the files are generated it consits all the valid, consistent and complete data.
 
 Did not use BFILL and FFILL because it hampers the quality of data the null values for which no information was found are removed and others are replaced with the matching data
 
-# Step 4 : Inserting data into the table
+## Step 4 : Inserting data into the table
 
 Used python script to INSERT data into the respective tables.
 The create queries can be found in Create_Queries.pdf
@@ -164,7 +163,7 @@ csv_data3 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\cops_information.
 
 #Reading locations
 csv_data4 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\locations.csv', encoding="utf8")))
-# store headers and rows
+#store headers and rows
 
 header = next(csv_data1)
 header = next(csv_data2)
@@ -199,11 +198,11 @@ print ("Loaded in location Database")
 conn.commit()
 conn.close()
 
-# The screen prints of all the script working fine can be found in Run_Scripts.pdf
+### The screen prints of all the script working fine can be found in Run_Scripts.pdf
 
 
 
-# Step 5 : Use Cases and SQL Queries 
+## Step 5 : Use Cases and SQL Queries 
 
 The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
 
@@ -369,7 +368,6 @@ FROM cops_info c RIGHT JOIN location l
 ON c.zip_code = l.postal
 where c.neighborhood = 'Dorchester'
 
-# Step 6 : All the results for the queries from Assignment 2 is uploaded and can be found in Assignment2_queries.pdf
+## Step 6 : All the results for the queries from Assignment 2 is uploaded and can be found in Assignment2_queries.pdf
 
-# Step 7 : No review comments to work upon was recieved from Assignment 2.
-
+## Step 7 : No review comments to work upon was recieved from Assignment 2.
