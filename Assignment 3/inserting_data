@@ -2,11 +2,20 @@ import mysql.connector
 import csv
 import pandas as pd
 
+#establishing connection
 conn=mysql.connector.connect(host='localhost', username='root', password='admin', database='fear_away', allow_local_infile=True)
 my_cursor=conn.cursor()
+
+#Reading incidents file
 csv_data1 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\incidents.csv',encoding="utf8")))
+
+#Reading incidents type file
 csv_data2 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\incident_type.csv', encoding="utf8")))
+
+#Reading cops information file
 csv_data3 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\cops_information.csv', encoding="utf8")))
+
+#Reading locations
 csv_data4 = (csv.reader(open(r'C:\Users\chand\OneDrive\Desktop\locations.csv', encoding="utf8")))
 # store headers and rows
 
@@ -16,24 +25,28 @@ header = next(csv_data3)
 header = next(csv_data4)
 
 print ("importing the file 1")
-
+#Inserting into incidents
 for row in csv_data1:
     print(row)
-    my_cursor.execute("INSERT INTO incidents (incident_number, incident_code_group, incident_desc, incident_district, incident_year ,incident_month, incident_hour, location) VALUES(%s, %s, %s, %s, %s, %s, %s,%s)", row)
+    my_cursor.execute("INSERT INTO incidents (incident_number, incident_code_group, incident_desc, incident_district, incident_year ,incident_month, incident_hour, location, zip) VALUES(%s, %s, %s, %s, %s, %s, %s,%s, %s)", row)
 print ("Loaded in incidents Database")
+
+#Inserting into incident type
 for row in csv_data2:
     print(row)
-    my_cursor.execute("INSERT INTO incident_type (offence_code, offence_type, locality) VALUES(%s, %s, %s)", row)
+    my_cursor.execute("INSERT INTO incident_type (incident_id, incident_code, incident_type, locality) VALUES(%s, %s, %s,%s)", row)
 print ("Loaded in incident_type Database")
 
+#Inserting into cops
 for row in csv_data3:
     print(row)
     my_cursor.execute("INSERT INTO cops_info (cop_id, cop_badge, cop_name, cop_title , cop_district, zip_code, neighborhood) VALUES(%s, %s, %s, %s, %s, %s, %s)", row)
 print ("Loaded in cops Database")
 
+#Inserting intolocation
 for row in csv_data4:
     print(row)
-    my_cursor.execute("INSERT INTO location (neighborhood, postal, street) VALUES(%s, %s, %s)", row)
+    my_cursor.execute("INSERT INTO location (neighbourhood, zip_code, street) VALUES(%s, %s,%s)", row)
 print ("Loaded in location Database")
 
 conn.commit()

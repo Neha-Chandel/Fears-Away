@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 
@@ -73,29 +74,34 @@ missing_cols(address)
 
 # Drop unnecessary columns that are not important from crime dataset
 crime.dropna(axis=0, how="any", subset='OFFENSE_CODE_GROUP',inplace=True)
+crime.drop_duplicates(subset='INCIDENT_NUMBER', inplace=True)
 crime1 = crime.copy()
 drop_cols = ['OFFENSE_CODE' ,'DAY_OF_WEEK','REPORTING_AREA','INCIDENT_DATE','SHOOTING','UCR_PART','Lat', 'Long', 'Location']
 crime.drop(drop_cols, axis=1, inplace=True)
-crime.drop_duplicates(subset='INCIDENT_NUMBER', inplace=True)
 
 # Drop unnecessary columns that are not important from crime dataset making ready for incidents type
-dropping_cols = ['INCIDENT_NUMBER','OFFENSE_DESCRIPTION','DISTRICT' ,'REPORTING_AREA','INCIDENT_DATE','SHOOTING','YEAR','MONTH','DAY_OF_WEEK','HOUR','UCR_PART','Lat', 'Long','Location']
+dropping_cols = ['OFFENSE_DESCRIPTION','DISTRICT' ,'REPORTING_AREA','INCIDENT_DATE','SHOOTING','YEAR','MONTH','DAY_OF_WEEK','HOUR','UCR_PART','Lat', 'Long','Location','ZIP']
 crime1.drop(dropping_cols, axis=1, inplace=True)
-address.drop_duplicates(subset='street', inplace=True)
+
+#Cleaning address file
+
+address.drop_duplicates(subset='ZIP5', inplace=True)
 address.dropna(axis=0, how="any", subset='Nbhd',inplace=True)
+address.dropna(axis=0, how="any", subset='ZIP5',inplace=True)
 
 # Drop unnecessary columns that are not important from cops dataset
 
 dropc_cols = ['url',  'org_url' ,'doa','total','regular','retro','other','overtime', 'state','injured', 'detail','quinn','details_count', 'articles_officers_count', 'articles_officers_to_review_count', 'ia_score', 'field_contacts_count', 'incidents_count', 'swats_count', 'citations_count']
 cops.drop(dropc_cols, axis=1, inplace=True)
-cops.dropna(axis=0, how="any",inplace=True)
+cops.dropna(axis=0, how="any", inplace=True)
 
+print(crime)
+print(crime1)
+print (cops)
+print(address)
 
 cops.head(50000).to_csv(r'C:\Users\chand\OneDrive\Desktop\cops_information.csv', index=False)
 crime.to_csv(r'C:\Users\chand\OneDrive\Desktop\incidents.csv', index=False)
 crime1.to_csv(r'C:\Users\chand\OneDrive\Desktop\incident_type.csv', index=False)
 address.to_csv(r'C:\Users\chand\OneDrive\Desktop\locations.csv', index=False)
 
-print(crime)
-print (cops)
-print(address)
