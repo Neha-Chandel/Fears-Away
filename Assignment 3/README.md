@@ -220,9 +220,10 @@ conn.close()
 ### Step 5 : Use Cases and SQL Queries 
 
 #### The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
-### https://github.com/Neha-Chandel/Fears-Away/blob/main/Assignment%203/Usecases_SQL_Queries.pdf
+#### https://github.com/Neha-Chandel/Fears-Away/blob/main/Assignment%203/Usecases_SQL_Queries.pdf
 
 #### Use Case 1: View the total number of incidents in Boston
+
 Description: User views the total number of incidents in last 5 years.
 Actor: User 
 Steps:
@@ -237,6 +238,7 @@ FROM incidents
 where incident_year between 2018 and 2022;
  
 #### Use Case2: User views top 5 neighborhoods in Boston for highest crime incidents.
+
 Description: User views the top 5 neighborhoods with highest number of incidents.
 Actor: User
 Precondition:
@@ -256,6 +258,7 @@ order by count(i.incident_number) desc
 limit 5; 
 
 #### Use Case3: User views the harassment incidents in Boston.
+
 Description: User views the harassment incidents in Boston along with streets.
 Actor: User
 Precondition:
@@ -276,6 +279,7 @@ group by l.neighborhood
 order by count(i.incident_number) desc;
 
 #### Use Case4: User views the officers details deployed for a particular location.
+
 Description: User views the officers details for a neighborhood in Boston.
 Actor: User
 Precondition:
@@ -294,6 +298,7 @@ where l.neighborhood = 'Roxbury'
 order by c.cop_name;
  
 #### Use Case5: User views the incidents for a particular street happened in a year.
+
 Description: User views the incidents details with respect to street.
 Actor: User
 Precondition:
@@ -315,6 +320,7 @@ limit 1;
 
  
 #### Use Case6: User views the details of the street along with neighborhood and zipcode which marked the highest number of incidents in last 5 year.
+
 Description: User views the incidents details with respect to time period.
 Actor: User
 Precondition:
@@ -335,6 +341,7 @@ limit 1;
 
  
 #### Use Case7: User views the details of the year with highest number of incidents.
+
 Description: User views the incidents details with respect to year.
 Actor: User
 Precondition:
@@ -354,6 +361,7 @@ order by count(incident_number) desc
 limit 1;
 
 #### Use Case8: User views the details of the time when most incidents happened.
+
 Description: User views the incidents details with respect to hour.
 Actor: User
 Precondition:
@@ -373,6 +381,7 @@ order by count(incident_number) desc
 limit 1;
  
 #### Use Case9: User views the number of incidents happened after midnight.
+
 Description: User views the incidents details happened after midnight.
 Actor: User
 Precondition:
