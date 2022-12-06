@@ -220,6 +220,7 @@ conn.close()
 ### Step 5 : Use Cases and SQL Queries 
 
 #### The pdf is uploaded Usecases_SQL_Queries.pdf along with database screenshot of all the queries running fine.
+### https://github.com/Neha-Chandel/Fears-Away/blob/main/Assignment%203/Usecases_SQL_Queries.pdf
 
 #### Use Case 1: View the total number of incidents in Boston
 Description: User views the total number of incidents in last 5 years.
