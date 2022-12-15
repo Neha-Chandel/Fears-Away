@@ -1,23 +1,24 @@
+## Fears Away by Neha Chandel NUID (001593822)
 
-Name: Neha Chandel
-NUID: 001593822
-Git Hub Id: Neha-Chandel
+### Overview
 
-FEARS AWAY
+This project is created with a vision to utilize the dataset for analyzing the crime in Boston and predicting safer routes to the citizens. The main point of interest is in discovering if is it possible to predict potential criminal events for a specific time and place in the future. And if depending on that we can find out which route to be taken for travelling in our day to day lives. The dataset can be utilized for the various purpose related to people’s safety.
 
-Overview
+### Abstract
 
-The primary objective of the project is to create a safer environment for people. In spite of the gender, we belong to, everyone’s fear of walking alone, especially in the dark. It would feel so safe and joyful to have someone accompanying us. Taking inspiration of my personal experiences and the ones my friends shared. I am sharing the idea of finding a companion while walking the same route, the same way we find buddies on Facebook, Instagram, dating sites and so many other platforms just on one click. The database will contain the details of the citizens whose identities are verified. 
+Looking at the crime statistics though the average crime rate in Boston is declining each year and the declining rate can be made faster by utilizing the data gathered to benefit different groups such as city officials, law enforcement, home buyers, travelers etc.
 
-Features
+### Goal
 
-•	Matching people taking the same routes.
-•	Listing the safest routes available.
-•	Listing and ranking people’s experiences based on the reviews provided by the users.
-•	Listing the interests, skills, routes taken by the users.
+The scope of this project is to address below queries.
+1.	What is count of the total number of incidents occurred in Boston in last 5 years?
+2.	What are the top 5 neighborhoods in Boston with highest crime incidents?
+3.	How many harassment incidents reported on Boston streets? 
+3.	How many harassment incidents reported on Boston streets? 
+4.	Who are the officers deputed for Roxbury neighborhood in Boston?
+5.	What is the most common incident on Adams Street in a one-year period?
+6.	Which is the most unsafe street in Boston?
+7.	Which year marks the highest number of incidents in Boston?
+8.	Between what hours of day most incidents happen in Boston?
+9.	How many incidents reported after midnight night?
 
-Future Scope
-
-•	The dataset can be used by the safety apps to enhance their services. 
-•	The dataset can be used by geographically based sectors to get the data of the safest routes available.
-•	Apply machine learning model for predicting the safe routes.
